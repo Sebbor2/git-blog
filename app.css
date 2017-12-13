@@ -1,0 +1,53 @@
+div#blog > h1 {
+    text-align:center;
+}
+
+div#login {
+    width: 300px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+}
+
+div.article h2 {
+    border-bottom: 2px solid black;
+}
+
+div#article-form form {
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    width: 50%;
+}
+
+div#article-form form>div {
+    margin: 20px;
+}
+
+div#article-form input, textarea {
+    float: right;
+    resize: none;
+    width: 100%;
+}
+
+div#article-form textarea {
+    height: 200px;
+}
+
+div#article-form button, label {
+    margin-top: 10px;
+    margin-left: -5px;
+}
+
+img {
+    height: 15px;
+    width: 15px;
+}
+
+img:hover {
+    cursor: pointer;
+    transform: scale(1.2,1.2);
+}

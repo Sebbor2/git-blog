@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mon premier blog avec AngularJS</title>
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="dist/app.js"></script>
+        
+        <link rel="stylesheet" href="dist/app.min.css" />
+    </head>
+    <body ng-app="ngblog">
+        <div id="login" ng-controller="LoginController as loginCtrl" 
+             ng-show="loginCtrl.visible">
+            <label>Nom d'utilisateur</label>
+            <input ng-model="loginCtrl.username" name="username" />
+            <button ng-click="loginCtrl.validateUsername()">Modifier</button>
+        </div>
+        <div id="blog" ng-controller="BlogController as blogCtrl"
+             ng-hide="!blogCtrl.listVisible && !blogCtrl.formVisible">
+            <h1>Wordpress new generation</h1>
+            <div id="articles" ng-show="blogCtrl.listVisible">
+                <button ng-click="blogCtrl.displayArticleForm(true)">Ajouter un article</button>
+                <div class="article" ng-repeat="article in blogCtrl.articles">
+                    <h2>{{article.title}} 
+                        <img src="assets/delArticle.png" ng-click="blogCtrl.delArticle(article.id)"/>
+                        <img src="assets/editArticle.png" ng-click="blogCtrl.editArticle(article)"/>
+                    </h2>
+                    <p>{{article.description}}</p>
+                </div>
+                <div ng-controller="StorageController as storageCtrl">
+                    <img src="assets/loadArticle.png" ng-click="storageCtrl.load()"/>
+                    <img src="assets/saveArticle.png" ng-click="storageCtrl.save()"/>
+                </div>
+            </div>
+
+            <div id="article-form" ng-show="blogCtrl.formVisible">
+                <h2>{{blogCtrl.article.id ? 'Modifier l\'Article' : 'Nouvel Article'}}</h2>
+                <form ng-submit="blogCtrl.addArticle($event)">
+                    <div>
+                        <label for="title">Titre :</label>
+                        <input id="title" name="title" ng-model="blogCtrl.article.title"/>
+                    </div>
+                    <div>
+                        <label for="descr">Description :</label>
+                        <textarea id="descr" name="descr" ng-model="blogCtrl.article.description"></textarea>
+                    </div>
+                    <div>
+                        <button type="button" ng-click="blogCtrl.displayArticleForm(false)">Annuler</button>
+                        <button>Publier</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
